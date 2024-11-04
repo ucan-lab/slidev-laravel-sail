@@ -24,618 +24,505 @@ mdc: true
 overviewSnapshots: true
 ---
 
-# Welcome to Slidev
-
-Presentation slides for developers
-
-<div class="pt-12">
-  <span @click="$slidev.nav.next" class="px-2 py-1 rounded cursor-pointer" hover="bg-white bg-opacity-10">
-    Press Space for next page <carbon:arrow-right class="inline"/>
-  </span>
-</div>
-
-<div class="abs-br m-6 flex gap-2">
-  <button @click="$slidev.nav.openInEditor()" title="Open in Editor" class="text-xl slidev-icon-btn opacity-50 !border-none !hover:text-white">
-    <carbon:edit />
-  </button>
-  <a href="https://github.com/slidevjs/slidev" target="_blank" alt="GitHub" title="Open in GitHub"
-    class="text-xl slidev-icon-btn opacity-50 !border-none !hover:text-white">
-    <carbon-logo-github />
-  </a>
-</div>
-
-<!--
-The last comment block of each slide will be treated as slide notes. It will be visible and editable in Presenter Mode along with the slide. [Read more in the docs](https://sli.dev/guide/syntax.html#notes)
--->
+# What is Laravel?
 
 ---
-transition: fade-out
----
 
-# What is Slidev?
+# What is Laravel Sail?
 
-Slidev is a slides maker and presenter designed for developers, consist of the following features
-
-- 📝 **Text-based** - focus on the content with Markdown, and then style them later
-- 🎨 **Themable** - themes can be shared and re-used as npm packages
-- 🧑‍💻 **Developer Friendly** - code highlighting, live coding with autocompletion
-- 🤹 **Interactive** - embed Vue components to enhance your expressions
-- 🎥 **Recording** - built-in recording and camera view
-- 📤 **Portable** - export to PDF, PPTX, PNGs, or even a hostable SPA
-- 🛠 **Hackable** - virtually anything that's possible on a webpage is possible in Slidev
-<br>
-<br>
-
-Read more about [Why Slidev?](https://sli.dev/guide/why)
-
-<!--
-You can have `style` tag in markdown to override the style for the current page.
-Learn more: https://sli.dev/features/slide-scope-style
--->
-
-<style>
-h1 {
-  background-color: #2B90B6;
-  background-image: linear-gradient(45deg, #4EC5D4 10%, #146b8c 20%);
-  background-size: 100%;
-  -webkit-background-clip: text;
-  -moz-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  -moz-text-fill-color: transparent;
-}
-</style>
-
-<!--
-Here is another comment.
--->
+- Laravel公式提供の開発環境
+- 内部的にDocker Composeを利用
+- Sailコマンドを経由してLaravelに関するコマンドを実行
+- Dockerの経験を必要とせずLaravel開発が行えることがコンセプトのツール
 
 ---
-transition: slide-up
-level: 2
----
 
-# Navigation
+# 準備1
 
-Hover on the bottom-left corner to see the navigation's controls panel, [learn more](https://sli.dev/guide/ui#navigation-bar)
+Dockerがインストールされていることを確認する。
+(Windowsの場合はWSL2のUbuntu上で実行する)
 
-## Keyboard Shortcuts
-
-|     |     |
-| --- | --- |
-| <kbd>right</kbd> / <kbd>space</kbd>| next animation or slide |
-| <kbd>left</kbd>  / <kbd>shift</kbd><kbd>space</kbd> | previous animation or slide |
-| <kbd>up</kbd> | previous slide |
-| <kbd>down</kbd> | next slide |
-
-<!-- https://sli.dev/guide/animations.html#click-animation -->
-<img
-  v-click
-  class="absolute -bottom-9 -left-7 w-80 opacity-50"
-  src="https://sli.dev/assets/arrow-bottom-left.svg"
-  alt=""
-/>
-<p v-after class="absolute bottom-23 left-45 opacity-30 transform -rotate-10">Here!</p>
-
----
-layout: two-cols
-layoutClass: gap-16
----
-
-# Table of contents
-
-You can use the `Toc` component to generate a table of contents for your slides:
-
-```html
-<Toc minDepth="1" maxDepth="1"></Toc>
+```
+$ docker -v
+Docker version 27.3.1, build ce12230
 ```
 
-The title will be inferred from your slide content, or you can override it with `title` and `level` in your frontmatter.
+hello-world が実行できることを確認する
 
-::right::
+```
+$ docker run hello-world
+Hello from Docker!
 
-<Toc v-click minDepth="1" maxDepth="2"></Toc>
-
----
-layout: image-right
-image: https://cover.sli.dev
----
-
-# Code
-
-Use code snippets and get the highlighting directly, and even types hover!
-
-```ts {all|5|7|7-8|10|all} twoslash
-// TwoSlash enables TypeScript hover information
-// and errors in markdown code blocks
-// More at https://shiki.style/packages/twoslash
-
-import { computed, ref } from 'vue'
-
-const count = ref(0)
-const doubled = computed(() => count.value * 2)
-
-doubled.value = 2
+...
 ```
 
-<arrow v-click="[4, 5]" x1="350" y1="310" x2="195" y2="334" color="#953" width="2" arrowSize="1" />
-
-<!-- This allow you to embed external code blocks -->
-<<< @/snippets/external.ts#snippet
-
-<!-- Footer -->
-
-[Learn more](https://sli.dev/features/line-highlighting)
-
-<!-- Inline style -->
-<style>
-.footnotes-sep {
-  @apply mt-5 opacity-10;
-}
-.footnotes {
-  @apply text-sm opacity-75;
-}
-.footnote-backref {
-  display: none;
-}
-</style>
-
-<!--
-Notes can also sync with clicks
-
-[click] This will be highlighted after the first click
-
-[click] Highlighted with `count = ref(0)`
-
-[click:3] Last click (skip two clicks)
--->
-
----
-level: 2
 ---
 
-# Shiki Magic Move
+# 準備2
 
-Powered by [shiki-magic-move](https://shiki-magic-move.netlify.app/), Slidev supports animations across multiple code snippets.
+起動しているコンテナが合った場合は、コンテナを削除しておく。
 
-Add multiple code blocks and wrap them with <code>````md magic-move</code> (four backticks) to enable the magic move. For example:
-
-````md magic-move {lines: true}
-```ts {*|2|*}
-// step 1
-const author = reactive({
-  name: 'John Doe',
-  books: [
-    'Vue 2 - Advanced Guide',
-    'Vue 3 - Basic Guide',
-    'Vue 4 - The Mystery'
-  ]
-})
+```
+$ docker ps -aq
+$ docker rm -f $(docker ps -aq)
 ```
 
-```ts {*|1-2|3-4|3-4,8}
-// step 2
-export default {
-  data() {
-    return {
-      author: {
-        name: 'John Doe',
-        books: [
-          'Vue 2 - Advanced Guide',
-          'Vue 3 - Basic Guide',
-          'Vue 4 - The Mystery'
-        ]
-      }
-    }
+---
+
+# 準備3
+
+今回使用するハンズオン用ディレクトリを作成します。
+
+```
+$ mkdir ~/sail-handson
+$ cd ~/sail-handson
+```
+
+---
+
+# Let's Handson
+
+```bash
+$ curl -s "https://laravel.build/example-app" | bash
+
+...
+
+Please provide your password so we can make some final adjustments to your application's permissions.
+Password: [ログインパスワードを入力]
+```
+
+- `example-app` はアプリケーション名(ディレクトリ名)を入れる
+  - 英数字とハイフン、アンダーバーのみ
+- インストールの最後に権限設定でログインパスワードを求められる
+- mysql, redis, meilisearch, mailpit, selenium
+
+---
+
+## 補足: Sailサービスの選択
+
+```bash
+$ curl -s "https://laravel.build/example-app?with=mysql,redis" | bash
+```
+
+withというクエリ文字列変数を使って、設定するサービスを選択できます。
+
+- 利用可能なサービス: `mysql`, `pgsql`, `mariadb`, `redis`, `memcached`, `meilisearch`, `typesence`, `minio`, `selenium`, `mailpit`
+
+# Docker イメージビルド&コンテナ作成
+
+```bash
+$ cd example-app
+$ ./vendor/bin/sail up -d
+```
+
+`-d` を付けるとデタッチドモード(バックグラウンド)で実行します。
+付けない場合はフォアグラウンドになり、ターミナルが占有されるので、別ターミナルでコマンドを打つ必要があります。
+
+---
+
+# localhost で接続が拒否されました。
+
+http://localhost へアクセスして次のエラーが出た場合は、他プロセスが 80 ポートをすでに利用している場合があります。
+
+心当たりがあればそのサービスを停止してください。
+不明な場合は次のコマンドからそのポートを利用しているプロセスを調べられます。
+
+```
+$ sudo lsof -P -i:80
+COMMAND     PID USER   FD   TYPE             DEVICE SIZE/OFF NODE NAME
+OrbStack  26865 ucan   86u  IPv4 0xe7f199b22192fe94      0t0  TCP *:80 (LISTEN)
+```
+
+表示されたPIDを殺します。
+例えば `26865` PIDを削除したい場合は次のコマンドを実行します。
+
+```
+$ sudo kill -9 26865
+```
+
+再度、sailコマンドからコンテナを再作成してください。
+
+```
+$ sail down
+$ sail up -d
+```
+
+---
+
+# マイグレーションの実行
+
+```bash
+$ ./vendor/bin/sail artisan migrate
+
+   INFO  Running migrations.
+
+  0001_01_01_000000_create_users_table . 76.49ms DONE
+  0001_01_01_000001_create_cache_table . 21.24ms DONE
+  0001_01_01_000002_create_jobs_table .. 50.65ms DONE
+```
+
+マイグレーションが適用されたことを確認する
+
+```bash
+$ ./vendor/bin/sail artisan migrate:status
+
+  Migration name ....................... Batch / Status
+  0001_01_01_000000_create_users_table ........ [1] Ran
+  0001_01_01_000001_create_cache_table ........ [1] Ran
+  0001_01_01_000002_create_jobs_table ......... [1] Ran
+```
+
+---
+
+# コンテナの起動確認
+
+```bash
+$ ./vendor/bin/sail ps
+NAME                      IMAGE                          COMMAND                  SERVICE        CREATED         STATUS                   PORTS
+example-app-laravel.test-1   sail-8.3/app                   "start-container"        laravel.test   3 minutes ago   Up 3 minutes             0.0.0.0:80->80/tcp, :::80->80/tcp, 0.0.0.0:5173->5173/tcp, :::5173->5173/tcp
+example-app-mailpit-1        axllent/mailpit:latest         "/mailpit"               mailpit        3 minutes ago   Up 3 minutes (healthy)   0.0.0.0:1025->1025/tcp, :::1025->1025/tcp, 0.0.0.0:8025->8025/tcp, :::8025->8025/tcp, 1110/tcp
+example-app-meilisearch-1    getmeili/meilisearch:latest    "tini -- /bin/sh -c …"   meilisearch    3 minutes ago   Up 3 minutes (healthy)   0.0.0.0:7700->7700/tcp, :::7700->7700/tcp
+example-app-mysql-1          mysql/mysql-server:8.0         "/entrypoint.sh mysq…"   mysql          3 minutes ago   Up 3 minutes (healthy)   0.0.0.0:3306->3306/tcp, :::3306->3306/tcp, 33060-33061/tcp
+example-app-redis-1          redis:alpine                   "docker-entrypoint.s…"   redis          3 minutes ago   Up 3 minutes (healthy)   0.0.0.0:6379->6379/tcp, :::6379->6379/tcp
+example-app-selenium-1       selenium/standalone-chromium   "/opt/bin/entry_poin…"   selenium       3 minutes ago   Up 3 minutes             4444/tcp, 5900/tcp
+```
+
+---
+
+# 動作確認
+
+http://localhost
+
+シェルを再起動する
+
+Sailファイルをカスタマイズしたい場合
+
+https://github.com/laravel/sail/blob/1.x/bin/sail
+
+---
+
+# 補足: Sailコマンド
+
+Sailコマンドの実態は約600行程のBashスクリプトになっている
+`vendor/laravel/sail/bin/sail` に実装がある
+
+https://github.com/laravel/sail/blob/1.x/bin/sail
+
+---
+
+# シェルエイリアスの設定
+
+```
+$ echo $SHELL
+/bin/zsh # または /bin/bash
+```
+
+`~/.zshrc` または `~/.bash_profile` に以下のエイリアス設定を追記する
+
+```
+alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'
+```
+
+- `[ -f sail ]` 現在のディレクトリに sail ファイルが存在するか
+  - 存在する場合 => bash sail
+  - 存在しない場合 => vendor/bin/sail
+
+---
+
+# シェルエイリアスの反映
+
+好きな方法でシェルエイリアス設定を読み込む
+
+```
+$ exec $SHELL -l
+
+# or
+$ source ~/.zshrc
+
+# or
+$ . ~/.zshrc
+```
+
+---
+
+# 補足: Sailコマンド一覧
+
+```
+$ sail help
+Laravel Sail
+
+Usage:
+  sail COMMAND [options] [arguments]
+
+Unknown commands are passed to the docker-compose binary.
+
+docker-compose Commands:
+  sail up        Start the application
+  sail up -d     Start the application in the background
+  sail stop      Stop the application
+  sail restart   Restart the application
+  sail ps        Display the status of all containers
+
+Artisan Commands:
+  sail artisan ...          Run an Artisan command
+  sail artisan queue:work
+
+PHP Commands:
+  sail php ...   Run a snippet of PHP code
+  sail php -v
+
+Composer Commands:
+  sail composer ...                       Run a Composer command
+  sail composer require laravel/sanctum
+
+Node Commands:
+  sail node ...         Run a Node command
+  sail node --version
+
+NPM Commands:
+  sail npm ...        Run a npm command
+  sail npx            Run a npx command
+  sail npm run prod
+
+PNPM Commands:
+  sail pnpm ...        Run a pnpm command
+  sail pnpx            Run a pnpx command
+  sail pnpm run prod
+
+Yarn Commands:
+  sail yarn ...        Run a Yarn command
+  sail yarn run prod
+
+Bun Commands:
+  sail bun ...        Run a bun command
+  sail bunx           Run a bunx command
+  sail bun run prod
+
+Database Commands:
+  sail mysql     Start a MySQL CLI session within the 'mysql' container
+  sail mariadb   Start a MySQL CLI session within the 'mariadb' container
+  sail psql      Start a PostgreSQL CLI session within the 'pgsql' container
+  sail redis     Start a Redis CLI session within the 'redis' container
+
+Debugging:
+  sail debug ...          Run an Artisan command in debug mode
+  sail debug queue:work
+
+Running Tests:
+  sail test          Run the PHPUnit tests via the Artisan test command
+  sail phpunit ...   Run PHPUnit
+  sail pest ...      Run Pest
+  sail pint ...      Run Pint
+  sail dusk          Run the Dusk tests (Requires the laravel/dusk package)
+  sail dusk:fails    Re-run previously failed Dusk tests (Requires the laravel/dusk package)
+
+Container CLI:
+  sail shell        Start a shell session within the application container
+  sail bash         Alias for 'sail shell'
+  sail root-shell   Start a root shell session within the application container
+  sail root-bash    Alias for 'sail root-shell'
+  sail tinker       Start a new Laravel Tinker session
+
+Sharing:
+  sail share   Share the application publicly via a temporary URL
+  sail open    Open the site in your browser
+
+Binaries:
+  sail bin ...   Run Composer binary scripts from the vendor/bin directory
+
+Customization:
+  sail artisan sail:publish   Publish the Sail configuration files
+  sail build --no-cache       Rebuild all of the Sail containers
+```
+
+---
+
+# 補足: バージョン確認
+
+```
+$ sail php -v
+PHP 8.3.13 (cli) (built: Oct 30 2024 11:27:41) (NTS)
+Copyright (c) The PHP Group
+Zend Engine v4.3.13, Copyright (c) Zend Technologies
+    with Zend OPcache v8.3.13, Copyright (c), by Zend Technologies
+    with Xdebug v3.3.2, Copyright (c) 2002-2024, by Derick Rethans
+
+$ sail artisan -v
+Laravel Framework 11.30.0
+
+$ sail composer -V
+Composer version 2.7.9 2024-09-04 14:43:28
+PHP version 8.3.11 (/usr/bin/php8.3)
+
+$ sail node -v
+v20.18.0
+
+$ sail npm -v
+10.9.0
+
+$ sail yarn -v
+1.22.22
+
+$ sail pnpm -v
+9.12.3
+
+$ sail bun -v
+1.1.33
+```
+
+---
+
+# Composerパッケージのインストール
+
+```
+$ sail composer install
+```
+
+- `composer.lock` を元にパッケージを `vendor` ディレクトリにインストール
+
+---
+
+# Nodeパッケージのインストール
+
+```
+$ sail npm install
+```
+
+- `package.json` を元にパッケージを `node_modules` ディレクトリにインストール
+- `package-lock.json` が生成される
+
+---
+
+# データベースマイグレーションの実行
+
+```
+$ sail artisan migrate
+```
+
+---
+
+# データベースマイグレーションの確認
+
+```
+$ sail artisan migrate:status
+
+  Migration name ....................... Batch / Status
+  0001_01_01_000000_create_users_table ........ [1] Ran
+  0001_01_01_000001_create_cache_table ........ [1] Ran
+  0001_01_01_000002_create_jobs_table ......... [1] Ran
+```
+
+---
+
+# データベース接続
+
+```
+$ sail mysql
+
+mysql> show tables;
++-----------------------+
+| Tables_in_laravel     |
++-----------------------+
+| cache                 |
+| cache_locks           |
+| failed_jobs           |
+| job_batches           |
+| jobs                  |
+| migrations            |
+| password_reset_tokens |
+| sessions              |
+| users                 |
++-----------------------+
+9 rows in set (0.00 sec)
+
+mysql> desc users;
++-------------------+-----------------+------+-----+---------+----------------+
+| Field             | Type            | Null | Key | Default | Extra          |
++-------------------+-----------------+------+-----+---------+----------------+
+| id                | bigint unsigned | NO   | PRI | NULL    | auto_increment |
+| name              | varchar(255)    | NO   |     | NULL    |                |
+| email             | varchar(255)    | NO   | UNI | NULL    |                |
+| email_verified_at | timestamp       | YES  |     | NULL    |                |
+| password          | varchar(255)    | NO   |     | NULL    |                |
+| remember_token    | varchar(100)    | YES  |     | NULL    |                |
+| created_at        | timestamp       | YES  |     | NULL    |                |
+| updated_at        | timestamp       | YES  |     | NULL    |                |
++-------------------+-----------------+------+-----+---------+----------------+
+8 rows in set (0.01 sec)
+
+mysql> select * from users;
+Empty set (0.00 sec)
+```
+
+---
+
+# データベースシーディング
+
+```
+$ sail artisan db:seed
+
+   INFO  Seeding database.
+```
+
+---
+
+# tinker - 対話シェル
+
+```
+$ sail tinker
+
+> User::all()
+[!] Aliasing 'User' to 'App\Models\User' for this Tinker session.
+= Illuminate\Database\Eloquent\Collection {#5941
+    all: [
+      App\Models\User {#5532
+        id: 1,
+        name: "Test User",
+        email: "test@example.com",
+        email_verified_at: "2024-11-02 11:45:22",
+        #password: "$2y$12$ZKtazQqtG6cTn9N.snuwZOdjg05ZyPbO1ckybQ6Q.Yca/pALS4pIK",
+        #remember_token: "LtZwmvKtW4",
+        created_at: "2024-11-02 11:45:22",
+        updated_at: "2024-11-02 11:45:22",
+      },
+    ],
   }
-}
-```
-
-```ts
-// step 3
-export default {
-  data: () => ({
-    author: {
-      name: 'John Doe',
-      books: [
-        'Vue 2 - Advanced Guide',
-        'Vue 3 - Basic Guide',
-        'Vue 4 - The Mystery'
-      ]
-    }
-  })
-}
-```
-
-Non-code blocks are ignored.
-
-```vue
-<!-- step 4 -->
-<script setup>
-const author = {
-  name: 'John Doe',
-  books: [
-    'Vue 2 - Advanced Guide',
-    'Vue 3 - Basic Guide',
-    'Vue 4 - The Mystery'
-  ]
-}
-</script>
-```
-````
-
----
-
-# Components
-
-<div grid="~ cols-2 gap-4">
-<div>
-
-You can use Vue components directly inside your slides.
-
-We have provided a few built-in components like `<Tweet/>` and `<Youtube/>` that you can use directly. And adding your custom components is also super easy.
-
-```html
-<Counter :count="10" />
-```
-
-<!-- ./components/Counter.vue -->
-<Counter :count="10" m="t-4" />
-
-Check out [the guides](https://sli.dev/builtin/components.html) for more.
-
-</div>
-<div>
-
-```html
-<Tweet id="1390115482657726468" />
-```
-
-<Tweet id="1390115482657726468" scale="0.65" />
-
-</div>
-</div>
-
-<!--
-Presenter note with **bold**, *italic*, and ~~striked~~ text.
-
-Also, HTML elements are valid:
-<div class="flex w-full">
-  <span style="flex-grow: 1;">Left content</span>
-  <span>Right content</span>
-</div>
--->
-
----
-class: px-20
----
-
-# Themes
-
-Slidev comes with powerful theming support. Themes can provide styles, layouts, components, or even configurations for tools. Switching between themes by just **one edit** in your frontmatter:
-
-<div grid="~ cols-2 gap-2" m="t-2">
-
-```yaml
----
-theme: default
----
-```
-
-```yaml
----
-theme: seriph
----
-```
-
-<img border="rounded" src="https://github.com/slidevjs/themes/blob/main/screenshots/theme-default/01.png?raw=true" alt="">
-
-<img border="rounded" src="https://github.com/slidevjs/themes/blob/main/screenshots/theme-seriph/01.png?raw=true" alt="">
-
-</div>
-
-Read more about [How to use a theme](https://sli.dev/guide/theme-addon#use-theme) and
-check out the [Awesome Themes Gallery](https://sli.dev/resources/theme-gallery).
-
----
-
-# Clicks Animations
-
-You can add `v-click` to elements to add a click animation.
-
-<div v-click>
-
-This shows up when you click the slide:
-
-```html
-<div v-click>This shows up when you click the slide.</div>
-```
-
-</div>
-
-<br>
-
-<v-click>
-
-The <span v-mark.red="3"><code>v-mark</code> directive</span>
-also allows you to add
-<span v-mark.circle.orange="4">inline marks</span>
-, powered by [Rough Notation](https://roughnotation.com/):
-
-```html
-<span v-mark.underline.orange>inline markers</span>
-```
-
-</v-click>
-
-<div mt-20 v-click>
-
-[Learn more](https://sli.dev/guide/animations#click-animation)
-
-</div>
-
----
-
-# Motions
-
-Motion animations are powered by [@vueuse/motion](https://motion.vueuse.org/), triggered by `v-motion` directive.
-
-```html
-<div
-  v-motion
-  :initial="{ x: -80 }"
-  :enter="{ x: 0 }"
-  :click-3="{ x: 80 }"
-  :leave="{ x: 1000 }"
->
-  Slidev
-</div>
-```
-
-<div class="w-60 relative">
-  <div class="relative w-40 h-40">
-    <img
-      v-motion
-      :initial="{ x: 800, y: -100, scale: 1.5, rotate: -50 }"
-      :enter="final"
-      class="absolute inset-0"
-      src="https://sli.dev/logo-square.png"
-      alt=""
-    />
-    <img
-      v-motion
-      :initial="{ y: 500, x: -100, scale: 2 }"
-      :enter="final"
-      class="absolute inset-0"
-      src="https://sli.dev/logo-circle.png"
-      alt=""
-    />
-    <img
-      v-motion
-      :initial="{ x: 600, y: 400, scale: 2, rotate: 100 }"
-      :enter="final"
-      class="absolute inset-0"
-      src="https://sli.dev/logo-triangle.png"
-      alt=""
-    />
-  </div>
-
-  <div
-    class="text-5xl absolute top-14 left-40 text-[#2B90B6] -z-1"
-    v-motion
-    :initial="{ x: -80, opacity: 0}"
-    :enter="{ x: 0, opacity: 1, transition: { delay: 2000, duration: 1000 } }">
-    Slidev
-  </div>
-</div>
-
-<!-- vue script setup scripts can be directly used in markdown, and will only affects current page -->
-<script setup lang="ts">
-const final = {
-  x: 0,
-  y: 0,
-  rotate: 0,
-  scale: 1,
-  transition: {
-    type: 'spring',
-    damping: 10,
-    stiffness: 20,
-    mass: 2
-  }
-}
-</script>
-
-<div
-  v-motion
-  :initial="{ x:35, y: 30, opacity: 0}"
-  :enter="{ y: 0, opacity: 1, transition: { delay: 3500 } }">
-
-[Learn more](https://sli.dev/guide/animations.html#motion)
-
-</div>
-
----
-
-# LaTeX
-
-LaTeX is supported out-of-box. Powered by [KaTeX](https://katex.org/).
-
-<div h-3 />
-
-Inline $\sqrt{3x-1}+(1+x)^2$
-
-Block
-$$ {1|3|all}
-\begin{aligned}
-\nabla \cdot \vec{E} &= \frac{\rho}{\varepsilon_0} \\
-\nabla \cdot \vec{B} &= 0 \\
-\nabla \times \vec{E} &= -\frac{\partial\vec{B}}{\partial t} \\
-\nabla \times \vec{B} &= \mu_0\vec{J} + \mu_0\varepsilon_0\frac{\partial\vec{E}}{\partial t}
-\end{aligned}
-$$
-
-[Learn more](https://sli.dev/features/latex)
-
----
-
-# Diagrams
-
-You can create diagrams / graphs from textual descriptions, directly in your Markdown.
-
-<div class="grid grid-cols-4 gap-5 pt-4 -mb-6">
-
-```mermaid {scale: 0.5, alt: 'A simple sequence diagram'}
-sequenceDiagram
-    Alice->John: Hello John, how are you?
-    Note over Alice,John: A typical interaction
-```
-
-```mermaid {theme: 'neutral', scale: 0.8}
-graph TD
-B[Text] --> C{Decision}
-C -->|One| D[Result 1]
-C -->|Two| E[Result 2]
-```
-
-```mermaid
-mindmap
-  root((mindmap))
-    Origins
-      Long history
-      ::icon(fa fa-book)
-      Popularisation
-        British popular psychology author Tony Buzan
-    Research
-      On effectiveness<br/>and features
-      On Automatic creation
-        Uses
-            Creative techniques
-            Strategic planning
-            Argument mapping
-    Tools
-      Pen and paper
-      Mermaid
-```
-
-```plantuml {scale: 0.7}
-@startuml
-
-package "Some Group" {
-  HTTP - [First Component]
-  [Another Component]
-}
-
-node "Other Groups" {
-  FTP - [Second Component]
-  [First Component] --> FTP
-}
-
-cloud {
-  [Example 1]
-}
-
-database "MySql" {
-  folder "This is my folder" {
-    [Folder 3]
-  }
-  frame "Foo" {
-    [Frame 4]
-  }
-}
-
-[Another Component] --> [Example 1]
-[Example 1] --> [Folder 3]
-[Folder 3] --> [Frame 4]
-
-@enduml
-```
-
-</div>
-
-Learn more: [Mermaid Diagrams](https://sli.dev/features/mermaid) and [PlantUML Diagrams](https://sli.dev/features/plantuml)
-
----
-foo: bar
-dragPos:
-  square: 691,32,167,_,-16
----
-
-# Draggable Elements
-
-Double-click on the draggable elements to edit their positions.
-
-<br>
-
-###### Directive Usage
-
-```md
-<img v-drag="'square'" src="https://sli.dev/logo.png">
-```
-
-<br>
-
-###### Component Usage
-
-```md
-<v-drag text-3xl>
-  <carbon:arrow-up />
-  Use the `v-drag` component to have a draggable container!
-</v-drag>
-```
-
-<v-drag pos="663,206,261,_,-15">
-  <div text-center text-3xl border border-main rounded>
-    Double-click me!
-  </div>
-</v-drag>
-
-<img v-drag="'square'" src="https://sli.dev/logo.png">
-
-###### Draggable Arrow
-
-```md
-<v-drag-arrow two-way />
-```
-
-<v-drag-arrow pos="67,452,253,46" two-way op70 />
-
----
-src: ./pages/imported-slides.md
-hide: false
----
-
----
-
-# Monaco Editor
-
-Slidev provides built-in Monaco Editor support.
-
-Add `{monaco}` to the code block to turn it into an editor:
-
-```ts {monaco}
-import { ref } from 'vue'
-import { emptyArray } from './external'
-
-const arr = ref(emptyArray(10))
-```
-
-Use `{monaco-run}` to create an editor that can execute the code directly in the slide:
-
-```ts {monaco-run}
-import { version } from 'vue'
-import { emptyArray, sayHello } from './external'
-
-sayHello()
-console.log(`vue ${version}`)
-console.log(emptyArray<number>(10).reduce(fib => [...fib, fib.at(-1)! + fib.at(-2)!], [1, 1]))
 ```
 
 ---
-layout: center
-class: text-center
+
+# Pint - コードフォーマッター
+
+```
+$ sail pint --test
+$ sail pint
+```
+
 ---
 
-# Learn More
+# テスト
 
-[Documentation](https://sli.dev) · [GitHub](https://github.com/slidevjs/slidev) · [Showcases](https://sli.dev/resources/showcases)
+```
+$ sail test
 
-<PoweredBySlidev mt-10 />
+   PASS  Tests\Unit\ExampleTest
+  ✓ that true is true
+
+   PASS  Tests\Feature\ExampleTest
+  ✓ the application returns a successful response                                                                                                                                0.08s
+
+  Tests:    2 passed (2 assertions)
+  Duration: 0.13s
+```
+
+---
+
+# tips: コンテナシェル
+
+```
+# sailユーザーでログイン
+$ sail shell
+
+# rootユーザーでログイン
+$ sail root-shell
+```
