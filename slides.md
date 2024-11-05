@@ -19,6 +19,7 @@ transition: slide-left
 mdc: true
 # take snapshot for each slide in the overview
 overviewSnapshots: true
+favicon: /ucan.jpg
 ---
 
 # Laravel ローカル開発環境構築ハンズオン
