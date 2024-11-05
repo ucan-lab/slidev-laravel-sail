@@ -7,7 +7,7 @@
 <style>
 .slidev-layout {
     padding-top: 50px;
-    background-color: #3D3431;
+    background-color: #1e1e1e;
     padding-left: 2.0rem;
     padding-right: 2.0rem;
 }
