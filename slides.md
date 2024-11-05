@@ -3,14 +3,11 @@
 theme: seriph
 # random image from a curated Unsplash collection by Anthony
 # like them? see https://unsplash.com/collections/94734566/slidev
-background: https://cover.sli.dev
+background: bg.png
 # some information about your slides (markdown enabled)
-title: Welcome to Slidev
+title: 【サクッと!!】Laravel ローカル開発環境構築ハンズオン
 info: |
-  ## Slidev Starter Template
-  Presentation slides for developers.
-
-  Learn more at [Sli.dev](https://sli.dev)
+  2024/11/07 [ペチオブ](https://phper-oop.connpass.com) にて開催するLaravel Sailハンズオン資料です。
 # apply unocss classes to the current slide
 class: text-center
 # https://sli.dev/features/drawing
@@ -24,16 +21,15 @@ mdc: true
 overviewSnapshots: true
 ---
 
-# What is Laravel?
+# Laravel ローカル開発環境構築ハンズオン
+
+https://phper-oop.connpass.com/event/333013
 
 ---
 
-# What is Laravel Sail?
+# 自己紹介
 
-- Laravel公式提供の開発環境
-- 内部的にDocker Composeを利用
-- Sailコマンドを経由してLaravelに関するコマンドを実行
-- Dockerの経験を必要とせずLaravel開発が行えることがコンセプトのツール
+自己紹介を書く
 
 ---
 
@@ -67,6 +63,12 @@ $ docker ps -aq
 $ docker rm -f $(docker ps -aq)
 ```
 
+- `docker ps`: 現在稼働中のコンテナの一覧を表示
+  - `-a`: 停止しているコンテナも含めてすべてのコンテナ
+  - `-q`: コンテナIDだけを表示
+- `docker rm`: 指定されたDockerコンテナを削除
+  - `-f`: 実行中のコンテナを強制的に停止して削除
+
 ---
 
 # 準備3
@@ -74,8 +76,8 @@ $ docker rm -f $(docker ps -aq)
 今回使用するハンズオン用ディレクトリを作成します。
 
 ```
-$ mkdir ~/sail-handson
-$ cd ~/sail-handson
+$ mkdir sail-handson
+$ cd sail-handson
 ```
 
 ---
@@ -98,15 +100,152 @@ Password: [ログインパスワードを入力]
 
 ---
 
-## 補足: Sailサービスの選択
+# What is Laravel?
+
+- PHP用のオープンソースWebアプリケーションフレームワーク
+- 認証システム、ルーティング、キャッシュ、セッション管理などが標準搭載
+- PHPのフレームワークは多数...Symfony, CakePHP, BEAR.Sunday, Zend Framework, Yii Framework, Phalcon, Slim Framework, FuelPHPなど
+
+---
+
+# Laravel is trend?
+
+https://trends.google.co.jp/trends/explore?date=all&geo=JP&q=Laravel,Symfony,CakePHP,Rails,Django#TIMESERIES
+
+<p><img src="/trend.png" class="h-90"></p>
+
+---
+layout: two-cols
+---
+
+# What is version?
+
+| Version   | Release    | PHP      | 
+| :-------: | :--------: | :------: | 
+| 12.0      | 2025-1Q    | >= 8.2   | 
+| 11.0      | 2024-03-12 | >= 8.2   | 
+| 10.0      | 2023-02-14 | >= 8.1   | 
+| 9.0       | 2022-02-08 | >= 8.0.2 | 
+| 8.0       | 2020-09-08 | >= 7.3   | 
+| 7.0       | 2020-03-03 | >= 7.2.5 | 
+| 6.0 (LTS) | 2019-09-03 | >= 7.2   | 
+| 5.8       | 2019-02-26 | >= 7.1.3 | 
+
+::right::
+
+<h1><span style="color: #3D3431">-</span></h1>
+
+<table class="m-1">
+    <thead>
+        <tr>
+            <th>Version</th>
+            <th>Release</th>
+            <th>PHP</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>5.7</td>
+            <td>2018-09-04</td>
+            <td>&gt;= 7.1.3</td>
+        </tr>
+        <tr>
+            <td>5.6</td>
+            <td>2018-02-07</td>
+            <td>&gt;= 7.1.3</td>
+        </tr>
+        <tr>
+            <td>5.5 (LTS)</td>
+            <td>2017-08-30</td>
+            <td>&gt;= 7.0.0</td>
+        </tr>
+        <tr>
+            <td>5.4</td>
+            <td>2017-01-24</td>
+            <td>&gt;= 5.6.4</td>
+        </tr>
+        <tr>
+            <td>5.3</td>
+            <td>2016-08-23</td>
+            <td>&gt;= 5.6.4</td>
+        </tr>
+        <tr>
+            <td>5.2</td>
+            <td>2015-12-21</td>
+            <td>&gt;= 5.5.9</td>
+        </tr>
+        <tr>
+            <td>5.1 (LTS)</td>
+            <td>2015-05-09</td>
+            <td>&gt;= 5.5.9</td>
+        </tr>
+        <tr>
+            <td>5.0</td>
+            <td>2015-02-04</td>
+            <td></td>
+        </tr>
+    </tbody>
+</table>
+
+---
+
+# Laravel Release Cycle
+
+- メジャーリリース
+  - 年1リリース(2〜3月が多い)
+  - Laravel 8.0 までは年2リリースだった
+- サポートポリシー
+  - バグ修正はリリースから1年半
+  - セキュリティ修正はリリースから2年間
+  - LTS(Long Term Support)は廃止(Laravel 6.0)
+- バージョニング
+  - Laravel 6.0 からセマンティックバージョニングへ
+
+---
+
+# Laravel is history
+
+- 2011年: Taylor Otwellがシンプルで使いやすいPHPフレームワークとして開発開始。Laravel1.0は簡素な作り
+- 2012年-2013年: MVCアーキテクチャ、Composerサポート、Artisan CLI、データベース移行が追加され注目
+- 2014年-2015年: Laravel 5.0でディレクトリ構造の刷新、HTTPミドルウェア、タスクスケジューリング等が導入
+- 2016年-2019年: Laravel Scout、Passport、Horizonなどのエコシステムが拡大し、コミュニティが急成長
+- 2020年以降: Jetstream、Sanctum、Livewire、Laravel 8.0以降のモダンな機能が追加。Vaporでサーバーレスデプロイも実現
+現在: 世界中で人気を集め、初心者からプロまで利用されるPHPフレームワークのトップに。
+
+---
+
+# What is Laravel Sail?
+
+<p><img src="/logo.svg" class="h-30"></p>
+
+- Laravel公式提供の開発環境
+- 内部的にDocker Composeを利用
+- Sailコマンドを経由してLaravelに関するコマンドを実行
+- Dockerの経験を必要とせずLaravel開発が行えることがコンセプトのツール
+
+---
+
+# ところで、そろそろビルド終わった？
+
+終わらない人用コマンド  
+`example-app` ディレクトリを削除して再実行
+
+```bash
+$ curl -s "https://laravel.build/example-app?with=mysql" | bash
+```
+
+---
+
+# 補足: Sailサービスの選択
 
 ```bash
 $ curl -s "https://laravel.build/example-app?with=mysql,redis" | bash
 ```
 
-withというクエリ文字列変数を使って、設定するサービスを選択できます。
+`with` クエリ文字列変数を使って、設定するサービスを選択できます。
 
 - 利用可能なサービス: `mysql`, `pgsql`, `mariadb`, `redis`, `memcached`, `meilisearch`, `typesence`, `minio`, `selenium`, `mailpit`
+- デフォルトサービス: `mysql`, `redis`, `meilisearch`, `selenium`, `mailpit`
 
 # Docker イメージビルド&コンテナ作成
 
@@ -120,12 +259,37 @@ $ ./vendor/bin/sail up -d
 
 ---
 
+# 動作確認
+
+http://localhost
+
+---
+layout: two-cols
+---
+
+## ダークモード
+
+<p><img src="/dark.png" class="h-80"></p>
+
+::right::
+
+## ライトモード
+
+<p><img src="/light.png" class="h-80"></p>
+
+---
+
 # localhost で接続が拒否されました。
 
-http://localhost へアクセスして次のエラーが出た場合は、他プロセスが 80 ポートをすでに利用している場合があります。
+http://localhost へアクセスして次のエラーが出た場合
 
-心当たりがあればそのサービスを停止してください。
-不明な場合は次のコマンドからそのポートを利用しているプロセスを調べられます。
+<p><img src="/localhost.png" class="h-90"></p>
+
+他にポートを占有しているサービスが不明な場合は利用しているプロセスを調べる
+
+---
+
+# localhost で接続が拒否された場合のコマンド
 
 ```
 $ sudo lsof -P -i:80
@@ -189,18 +353,6 @@ example-app-selenium-1       selenium/standalone-chromium   "/opt/bin/entry_poin
 
 ---
 
-# 動作確認
-
-http://localhost
-
-シェルを再起動する
-
-Sailファイルをカスタマイズしたい場合
-
-https://github.com/laravel/sail/blob/1.x/bin/sail
-
----
-
 # 補足: Sailコマンド
 
 Sailコマンドの実態は約600行程のBashスクリプトになっている
@@ -241,6 +393,9 @@ $ source ~/.zshrc
 
 # or
 $ . ~/.zshrc
+
+# or
+Command + w
 ```
 
 ---
@@ -267,72 +422,7 @@ Artisan Commands:
   sail artisan ...          Run an Artisan command
   sail artisan queue:work
 
-PHP Commands:
-  sail php ...   Run a snippet of PHP code
-  sail php -v
-
-Composer Commands:
-  sail composer ...                       Run a Composer command
-  sail composer require laravel/sanctum
-
-Node Commands:
-  sail node ...         Run a Node command
-  sail node --version
-
-NPM Commands:
-  sail npm ...        Run a npm command
-  sail npx            Run a npx command
-  sail npm run prod
-
-PNPM Commands:
-  sail pnpm ...        Run a pnpm command
-  sail pnpx            Run a pnpx command
-  sail pnpm run prod
-
-Yarn Commands:
-  sail yarn ...        Run a Yarn command
-  sail yarn run prod
-
-Bun Commands:
-  sail bun ...        Run a bun command
-  sail bunx           Run a bunx command
-  sail bun run prod
-
-Database Commands:
-  sail mysql     Start a MySQL CLI session within the 'mysql' container
-  sail mariadb   Start a MySQL CLI session within the 'mariadb' container
-  sail psql      Start a PostgreSQL CLI session within the 'pgsql' container
-  sail redis     Start a Redis CLI session within the 'redis' container
-
-Debugging:
-  sail debug ...          Run an Artisan command in debug mode
-  sail debug queue:work
-
-Running Tests:
-  sail test          Run the PHPUnit tests via the Artisan test command
-  sail phpunit ...   Run PHPUnit
-  sail pest ...      Run Pest
-  sail pint ...      Run Pint
-  sail dusk          Run the Dusk tests (Requires the laravel/dusk package)
-  sail dusk:fails    Re-run previously failed Dusk tests (Requires the laravel/dusk package)
-
-Container CLI:
-  sail shell        Start a shell session within the application container
-  sail bash         Alias for 'sail shell'
-  sail root-shell   Start a root shell session within the application container
-  sail root-bash    Alias for 'sail root-shell'
-  sail tinker       Start a new Laravel Tinker session
-
-Sharing:
-  sail share   Share the application publicly via a temporary URL
-  sail open    Open the site in your browser
-
-Binaries:
-  sail bin ...   Run Composer binary scripts from the vendor/bin directory
-
-Customization:
-  sail artisan sail:publish   Publish the Sail configuration files
-  sail build --no-cache       Rebuild all of the Sail containers
+...
 ```
 
 ---
@@ -346,26 +436,19 @@ Copyright (c) The PHP Group
 Zend Engine v4.3.13, Copyright (c) Zend Technologies
     with Zend OPcache v8.3.13, Copyright (c), by Zend Technologies
     with Xdebug v3.3.2, Copyright (c) 2002-2024, by Derick Rethans
-
 $ sail artisan -v
 Laravel Framework 11.30.0
-
 $ sail composer -V
 Composer version 2.7.9 2024-09-04 14:43:28
 PHP version 8.3.11 (/usr/bin/php8.3)
-
 $ sail node -v
 v20.18.0
-
 $ sail npm -v
 10.9.0
-
 $ sail yarn -v
 1.22.22
-
 $ sail pnpm -v
 9.12.3
-
 $ sail bun -v
 1.1.33
 ```
@@ -378,6 +461,7 @@ $ sail bun -v
 $ sail composer install
 ```
 
+- ComposerはPHPのパッケージ管理ツール
 - `composer.lock` を元にパッケージを `vendor` ディレクトリにインストール
 
 ---
@@ -388,6 +472,7 @@ $ sail composer install
 $ sail npm install
 ```
 
+- npm はNode.jsのパッケージ管理ツール
 - `package.json` を元にパッケージを `node_modules` ディレクトリにインストール
 - `package-lock.json` が生成される
 
@@ -398,6 +483,8 @@ $ sail npm install
 ```
 $ sail artisan migrate
 ```
+
+- `database/migrations/*.php` を元にSQLを発行してテーブル作成
 
 ---
 
@@ -411,6 +498,8 @@ $ sail artisan migrate:status
   0001_01_01_000001_create_cache_table ........ [1] Ran
   0001_01_01_000002_create_jobs_table ......... [1] Ran
 ```
+
+- `migrations` テーブルの中身と適用されていない `database/migrations/*.php` の中身を表示
 
 ---
 
@@ -517,7 +606,7 @@ $ sail test
 
 ---
 
-# tips: コンテナシェル
+# コンテナシェルにログイン
 
 ```
 # sailユーザーでログイン
@@ -526,3 +615,24 @@ $ sail shell
 # rootユーザーでログイン
 $ sail root-shell
 ```
+
+コンテナの好きなコマンドを実行できる
+rootユーザーで入ることはほぼない(一時的にライブラリをインストールしてみたいとか)
+
+---
+
+# その他
+
+## より詳細に書いたのでよかったら読んで！
+
+[【初心者向け】Laravel Sail でサクッとローカル開発環境を構築する](https://qiita.com/ucan-lab/items/0ef01c94e7e07a061311)
+
+## LaravelでCIさせたくなったら読んで！
+
+[Laravel Sail と GitHub Actions で効率的なビルド環境を手に入れろ！](https://qiita.com/ucan-lab/items/6bd242f0c7c934d7239a)
+
+---
+
+# おしまい
+
+お疲れ様でした🍵
