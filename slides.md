@@ -503,7 +503,7 @@ $ sail artisan migrate:status
 
 ---
 
-# データベース接続
+# データベース接続確認 1/2
 
 ```
 $ sail mysql
@@ -523,7 +523,13 @@ mysql> show tables;
 | users                 |
 +-----------------------+
 9 rows in set (0.00 sec)
+```
 
+---
+
+# データベース接続確認 2/2
+
+```
 mysql> desc users;
 +-------------------+-----------------+------+-----+---------+----------------+
 | Field             | Type            | Null | Key | Default | Extra          |
@@ -603,6 +609,11 @@ $ sail test
   Tests:    2 passed (2 assertions)
   Duration: 0.13s
 ```
+
+- PHPUnit: PHP用の単体テストを行うテストフレームワーク
+- [Pest](https://pestphp.com)
+  - 新しいテストフレームワーク
+  - 
 
 ---
 
