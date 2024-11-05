@@ -20,6 +20,13 @@ mdc: true
 # take snapshot for each slide in the overview
 overviewSnapshots: true
 favicon: /ucan.jpg
+fonts:
+  # basically the text
+  sans: 'Helvetica Neue,Robot'
+  # use with `font-serif` css class from windicss
+  local: 'Helvetica Neue'
+  # for code blocks, inline code, etc.
+  mono: 'Fira Code'
 ---
 
 # Laravel ローカル開発環境構築ハンズオン
