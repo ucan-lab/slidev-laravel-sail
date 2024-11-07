@@ -3,7 +3,7 @@
 theme: seriph
 # random image from a curated Unsplash collection by Anthony
 # like them? see https://unsplash.com/collections/94734566/slidev
-background: bg.png
+background: bg_black.png
 # some information about your slides (markdown enabled)
 title: 【サクッと!!】Laravel ローカル開発環境構築ハンズオン
 info: |
@@ -20,6 +20,7 @@ mdc: true
 # take snapshot for each slide in the overview
 overviewSnapshots: true
 favicon: /ucan.jpg
+colorSchema: dark
 fonts:
   # basically the text
   sans: 'Helvetica Neue,Robot'
@@ -29,19 +30,48 @@ fonts:
   mono: 'Fira Code'
 ---
 
-# Laravel ローカル開発環境構築ハンズオン
+# <a href="https://phper-oop.connpass.com/event/333013" target="_blank">Laravel 開発環境構築ハンズオン</a>
 
-https://phper-oop.connpass.com/event/333013
-
----
-
-# 自己紹介
-
-自己紹介を書く
+<p>
+  <a href="https://x.com/search?q=%23%E3%83%9A%E3%83%81%E3%82%AA%E3%83%96&src=typed_query&f=live" target="_blank">
+    2024/11/8(木) #ペチオブ
+  </a>
+</p>
 
 ---
+transition: fade
+---
 
-# 準備1
+## 自己紹介
+
+- ucan / ゆうきゃん
+  - X → <a href="https://x.com/ucan_lab" target="_blank">https://x.com/ucan_lab</a>
+  - Qiita → <a href="https://qiita.com/ucan-lab" target="_blank">https://qiita.com/ucan-lab</a>
+- 1988年6月19日生まれ(0x22歳) 長崎県西海市出身
+- 2010/4 〜 エンジニア(4社目)
+- ミライトデザイン所属
+
+---
+layout: center
+transition: fade
+---
+
+## 趣味: HADO(ARスポーツ)
+
+<p><img src="/hado.jpg" class="h-100"></p>
+
+---
+layout: cover
+transition: fade
+---
+
+# ハンズオンに入る前に
+
+---
+transition: fade
+---
+
+## 準備1
 
 Dockerがインストールされていることを確認する。
 (Windowsの場合はWSL2のUbuntu上で実行する)
@@ -61,8 +91,26 @@ Hello from Docker!
 ```
 
 ---
+transition: fade
+---
 
-# 準備2
+## Windows(WSL2)でエラーが出た場合
+
+```
+$ docker run hello-world
+
+Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running?
+```
+
+以前にハマったので共有します。
+
+<a href="https://qiita.com/ucan-lab/items/62c3ce7ecfc475ccd1a8" target="_blank">WSL2 Docker Desktop 環境でDockerデーモンが存在しないエラー Cannot connect to the Docker daemon at unix:///var/run/docker.sock</a>
+
+---
+transition: fade
+---
+
+## 準備2
 
 起動しているコンテナが合った場合は、コンテナを削除しておく。
 
@@ -78,8 +126,10 @@ $ docker rm -f $(docker ps -aq)
   - `-f`: 実行中のコンテナを強制的に停止して削除
 
 ---
+transition: fade
+---
 
-# 準備3
+## 準備3
 
 今回使用するハンズオン用ディレクトリを作成します。
 
@@ -89,8 +139,10 @@ $ cd sail-handson
 ```
 
 ---
+transition: fade
+---
 
-# Let's Handson
+## Let's Handson
 
 ```bash
 $ curl -s "https://laravel.build/example-app" | bash
@@ -107,26 +159,36 @@ Password: [ログインパスワードを入力]
 - mysql, redis, meilisearch, mailpit, selenium
 
 ---
+layout: cover
+transition: fade
+---
 
-# What is Laravel?
+# ビルドを待っている間に...
+
+---
+transition: fade
+---
+
+## What is Laravel?
 
 - PHP用のオープンソースWebアプリケーションフレームワーク
 - 認証システム、ルーティング、キャッシュ、セッション管理などが標準搭載
 - PHPのフレームワークは多数...Symfony, CakePHP, BEAR.Sunday, Zend Framework, Yii Framework, Phalcon, Slim Framework, FuelPHPなど
 
 ---
+transition: fade
+---
 
-# Laravel is trend?
+## Laravel is trend?
 
-https://trends.google.co.jp/trends/explore?date=all&geo=JP&q=Laravel,Symfony,CakePHP,Rails,Django#TIMESERIES
-
-<p><img src="/trend.png" class="h-90"></p>
+<p><a href="https://trends.google.co.jp/trends/explore?date=all&geo=JP&q=Laravel,Symfony,CakePHP,Rails,Django#TIMESERIES" target="_blank"><img src="/trend.png" class="h-100"></a></p>
 
 ---
 layout: two-cols
+transition: fade
 ---
 
-# What is version?
+## What is version?
 
 | Version   | Release    | PHP      | 
 | :-------: | :--------: | :------: | 
@@ -196,8 +258,10 @@ layout: two-cols
 </table>
 
 ---
+transition: fade
+---
 
-# Laravel Release Cycle
+## Laravel Release Cycle
 
 - メジャーリリース
   - 年1リリース(2〜3月が多い)
@@ -210,8 +274,10 @@ layout: two-cols
   - Laravel 6.0 からセマンティックバージョニングへ
 
 ---
+transition: fade
+---
 
-# Laravel is history
+## Laravel is history
 
 - 2011年: Taylor Otwellがシンプルで使いやすいPHPフレームワークとして開発開始。Laravel1.0は簡素な作り
 - 2012年-2013年: MVCアーキテクチャ、Composerサポート、Artisan CLI、データベース移行が追加され注目
@@ -221,8 +287,10 @@ layout: two-cols
 現在: 世界中で人気を集め、初心者からプロまで利用されるPHPフレームワークのトップに。
 
 ---
+transition: fade
+---
 
-# What is Laravel Sail?
+## What is Laravel Sail?
 
 <p><img src="/logo.svg" class="h-30"></p>
 
@@ -232,8 +300,11 @@ layout: two-cols
 - Dockerの経験を必要とせずLaravel開発が行えることがコンセプトのツール
 
 ---
+transition: fade
+layout: cover
+---
 
-# ところで、そろそろビルド終わった？
+## ところで、そろそろビルド終わった？
 
 終わらない人用コマンド  
 `example-app` ディレクトリを削除して再実行
@@ -243,8 +314,10 @@ $ curl -s "https://laravel.build/example-app?with=mysql" | bash
 ```
 
 ---
+transition: fade
+---
 
-# 補足: Sailサービスの選択
+## 補足: Sailサービスの選択
 
 ```bash
 $ curl -s "https://laravel.build/example-app?with=mysql,redis" | bash
@@ -255,7 +328,11 @@ $ curl -s "https://laravel.build/example-app?with=mysql,redis" | bash
 - 利用可能なサービス: `mysql`, `pgsql`, `mariadb`, `redis`, `memcached`, `meilisearch`, `typesence`, `minio`, `selenium`, `mailpit`
 - デフォルトサービス: `mysql`, `redis`, `meilisearch`, `selenium`, `mailpit`
 
-# Docker イメージビルド&コンテナ作成
+---
+transition: fade
+---
+
+## Docker イメージビルド&コンテナ作成
 
 ```bash
 $ cd example-app
@@ -266,13 +343,16 @@ $ ./vendor/bin/sail up -d
 付けない場合はフォアグラウンドになり、ターミナルが占有されるので、別ターミナルでコマンドを打つ必要があります。
 
 ---
+transition: fade
+---
 
-# 動作確認
+## 動作確認
 
-http://localhost
+<a href="http://localhost">http://localhost</a>
 
 ---
 layout: two-cols
+transition: fade
 ---
 
 ## ダークモード
@@ -286,20 +366,24 @@ layout: two-cols
 <p><img src="/light.png" class="h-80"></p>
 
 ---
+transition: fade
+---
 
-# localhost で接続が拒否されました。
+## localhost で接続が拒否されました。
 
-http://localhost へアクセスして次のエラーが出た場合
+<p><a href="http://localhost">http://localhost</a> へアクセスして次のエラーが出た場合</p>
 
 <p><img src="/localhost.png" class="h-90"></p>
 
 他にポートを占有しているサービスが不明な場合は利用しているプロセスを調べる
 
 ---
+transition: fade
+---
 
-# localhost で接続が拒否された場合のコマンド
+## localhost で接続が拒否された場合のコマンド
 
-```
+```bash
 $ sudo lsof -P -i:80
 COMMAND     PID USER   FD   TYPE             DEVICE SIZE/OFF NODE NAME
 OrbStack  26865 ucan   86u  IPv4 0xe7f199b22192fe94      0t0  TCP *:80 (LISTEN)
@@ -308,20 +392,22 @@ OrbStack  26865 ucan   86u  IPv4 0xe7f199b22192fe94      0t0  TCP *:80 (LISTEN)
 表示されたPIDを殺します。
 例えば `26865` PIDを削除したい場合は次のコマンドを実行します。
 
-```
+```bash
 $ sudo kill -9 26865
 ```
 
 再度、sailコマンドからコンテナを再作成してください。
 
-```
+```bash
 $ sail down
 $ sail up -d
 ```
 
 ---
+transition: fade
+---
 
-# マイグレーションの実行
+## マイグレーションの実行
 
 ```bash
 $ ./vendor/bin/sail artisan migrate
@@ -345,8 +431,10 @@ $ ./vendor/bin/sail artisan migrate:status
 ```
 
 ---
+transition: fade
+---
 
-# コンテナの起動確認
+## コンテナの起動確認
 
 ```bash
 $ ./vendor/bin/sail ps
@@ -360,8 +448,35 @@ example-app-selenium-1       selenium/standalone-chromium   "/opt/bin/entry_poin
 ```
 
 ---
+layout: cover
+transition: fade
+---
 
-# 補足: Sailコマンド
+# ここで宣伝‼️
+
+---
+layout: cover
+transition: fade
+---
+
+## YouTubeのチャンネル登録&高評価をよろしくお願いします！！
+
+<a href="https://www.youtube.com/@miraito/streams">https://www.youtube.com/@miraito/streams</a>
+
+---
+layout: cover
+transition: fade
+---
+
+## アンケートもやってます！！
+
+<a href="https://www.noway-form.com/ja/f/afaf2623-3b77-4d73-9293-79ca14938511">https://www.noway-form.com/ja/f/afaf2623-3b77-4d73-9293-79ca14938511</a>
+
+---
+transition: fade
+---
+
+## 補足: Sailコマンド
 
 Sailコマンドの実態は約600行程のBashスクリプトになっている
 `vendor/laravel/sail/bin/sail` に実装がある
@@ -369,8 +484,10 @@ Sailコマンドの実態は約600行程のBashスクリプトになっている
 https://github.com/laravel/sail/blob/1.x/bin/sail
 
 ---
+transition: fade
+---
 
-# シェルエイリアスの設定
+## シェルエイリアスの設定
 
 ```
 $ echo $SHELL
@@ -388,12 +505,14 @@ alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'
   - 存在しない場合 => vendor/bin/sail
 
 ---
+transition: fade
+---
 
-# シェルエイリアスの反映
+## シェルエイリアスの反映
 
 好きな方法でシェルエイリアス設定を読み込む
 
-```
+```bash
 $ exec $SHELL -l
 
 # or
@@ -407,10 +526,12 @@ Command + w
 ```
 
 ---
+transition: fade
+---
 
-# 補足: Sailコマンド一覧
+## 補足: Sailコマンド一覧
 
-```
+```bash
 $ sail help
 Laravel Sail
 
@@ -434,10 +555,12 @@ Artisan Commands:
 ```
 
 ---
+transition: fade
+---
 
-# 補足: バージョン確認
+## 補足: バージョン確認
 
-```
+```bash
 $ sail php -v
 PHP 8.3.13 (cli) (built: Oct 30 2024 11:27:41) (NTS)
 Copyright (c) The PHP Group
@@ -462,10 +585,12 @@ $ sail bun -v
 ```
 
 ---
+transition: fade
+---
 
-# Composerパッケージのインストール
+## Composerパッケージのインストール
 
-```
+```bash
 $ sail composer install
 ```
 
@@ -473,10 +598,12 @@ $ sail composer install
 - `composer.lock` を元にパッケージを `vendor` ディレクトリにインストール
 
 ---
+transition: fade
+---
 
-# Nodeパッケージのインストール
+## Nodeパッケージのインストール
 
-```
+```bash
 $ sail npm install
 ```
 
@@ -485,20 +612,24 @@ $ sail npm install
 - `package-lock.json` が生成される
 
 ---
+transition: fade
+---
 
-# データベースマイグレーションの実行
+## データベースマイグレーションの実行
 
-```
+```bash
 $ sail artisan migrate
 ```
 
 - `database/migrations/*.php` を元にSQLを発行してテーブル作成
 
 ---
+transition: fade
+---
 
-# データベースマイグレーションの確認
+## データベースマイグレーションの確認
 
-```
+```bash
 $ sail artisan migrate:status
 
   Migration name ....................... Batch / Status
@@ -510,10 +641,12 @@ $ sail artisan migrate:status
 - `migrations` テーブルの中身と適用されていない `database/migrations/*.php` の中身を表示
 
 ---
+transition: fade
+---
 
-# データベース接続確認 1/2
+## データベース接続確認 1/2
 
-```
+```bash
 $ sail mysql
 
 mysql> show tables;
@@ -534,10 +667,12 @@ mysql> show tables;
 ```
 
 ---
+transition: fade
+---
 
-# データベース接続確認 2/2
+## データベース接続確認 2/2
 
-```
+```bash
 mysql> desc users;
 +-------------------+-----------------+------+-----+---------+----------------+
 | Field             | Type            | Null | Key | Default | Extra          |
@@ -558,20 +693,24 @@ Empty set (0.00 sec)
 ```
 
 ---
+transition: fade
+---
 
-# データベースシーディング
+## データベースシーディング
 
-```
+```bash
 $ sail artisan db:seed
 
    INFO  Seeding database.
 ```
 
 ---
+transition: fade
+---
 
-# tinker - 対話シェル
+## tinker - 対話シェル
 
-```
+```bash
 $ sail tinker
 
 > User::all()
@@ -593,19 +732,23 @@ $ sail tinker
 ```
 
 ---
+transition: fade
+---
 
-# Pint - コードフォーマッター
+## Pint - コードフォーマッター
 
-```
+```bash
 $ sail pint --test
 $ sail pint
 ```
 
 ---
+transition: fade
+---
 
-# テスト
+## テスト
 
-```
+```bash
 $ sail test
 
    PASS  Tests\Unit\ExampleTest
@@ -624,10 +767,12 @@ $ sail test
   - 
 
 ---
+transition: fade
+---
 
-# コンテナシェルにログイン
+## コンテナシェルにログイン
 
-```
+```bash
 # sailユーザーでログイン
 $ sail shell
 
@@ -639,19 +784,38 @@ $ sail root-shell
 rootユーザーで入ることはほぼない(一時的にライブラリをインストールしてみたいとか)
 
 ---
-
-# その他
-
-## より詳細に書いたのでよかったら読んで！
-
-[【初心者向け】Laravel Sail でサクッとローカル開発環境を構築する](https://qiita.com/ucan-lab/items/0ef01c94e7e07a061311)
-
-## LaravelでCIさせたくなったら読んで！
-
-[Laravel Sail と GitHub Actions で効率的なビルド環境を手に入れろ！](https://qiita.com/ucan-lab/items/6bd242f0c7c934d7239a)
-
+layout: cover
+transition: fade
 ---
 
-# おしまい
+## 質問＆相談＆感想のコーナー
+
+---
+transition: fade
+---
+
+## 物足りない人へ
+
+- [【初心者向け】Laravel Sail でサクッとローカル開発環境を構築する](https://qiita.com/ucan-lab/items/0ef01c94e7e07a061311)
+- [Laravel Sail と GitHub Actions で効率的なビルド環境を手に入れろ！](https://qiita.com/ucan-lab/items/6bd242f0c7c934d7239a)
+
+---
+layout: cover
+transition: fade
+---
+
+## おしまい
 
 お疲れ様でした🍵
+
+---
+layout: cover
+transition: fade
+---
+
+## アンケートとチャンネル登録忘れずに！！
+
+<ul>
+  <li><a href="https://www.youtube.com/@miraito/streams">https://www.youtube.com/@miraito/streams</a></li>
+  <li><a href="https://www.noway-form.com/ja/f/afaf2623-3b77-4d73-9293-79ca14938511">https://www.noway-form.com/ja/f/afaf2623-3b77-4d73-9293-79ca14938511</a></li>
+</ul>
