@@ -34,7 +34,7 @@ fonts:
 
 <p>
   <a href="https://x.com/search?q=%23%E3%83%9A%E3%83%81%E3%82%AA%E3%83%96&src=typed_query&f=live" target="_blank">
-    2024/11/8(木) #ペチオブ
+    2024/11/7(木) #ペチオブ
   </a>
 </p>
 <p>
