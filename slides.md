@@ -30,11 +30,16 @@ fonts:
   mono: 'Fira Code'
 ---
 
-# <a href="https://phper-oop.connpass.com/event/333013" target="_blank">Laravel 開発環境構築ハンズオン</a>
+# <a href="https://phper-oop.connpass.com/event/333013" target="_blank"><b style="color: #F05340">Laravel</b> 開発環境構築ハンズオン</a>
 
 <p>
   <a href="https://x.com/search?q=%23%E3%83%9A%E3%83%81%E3%82%AA%E3%83%96&src=typed_query&f=live" target="_blank">
     2024/11/8(木) #ペチオブ
+  </a>
+</p>
+<p>
+  <a href="https://x.com/search?q=%23%E3%83%9A%E3%83%81%E3%82%AA%E3%83%96&src=typed_query&f=live" target="_blank">
+    ゆうきゃん (@ucan_lab)
   </a>
 </p>
 
@@ -45,9 +50,9 @@ transition: fade
 ## 自己紹介
 
 - ucan / ゆうきゃん
-  - X → <a href="https://x.com/ucan_lab" target="_blank">https://x.com/ucan_lab</a>
-  - Qiita → <a href="https://qiita.com/ucan-lab" target="_blank">https://qiita.com/ucan-lab</a>
-- 1988年6月19日生まれ(0x22歳) 長崎県西海市出身
+  - X → <a href="https://x.com/ucan_lab" target="_blank">@ucan_lab</a>
+  - Qiita → <a href="https://qiita.com/ucan-lab" target="_blank">@ucan-lab</a>
+- 1988年6月19日生まれ(0x24歳) 長崎県西海市出身
 - 2010/4 〜 エンジニア(4社目)
 - ミライトデザイン所属
 
@@ -63,6 +68,7 @@ transition: fade
 ---
 layout: cover
 transition: fade
+background: /bg_blue.png
 ---
 
 # ハンズオンに入る前に
@@ -161,6 +167,7 @@ Password: [ログインパスワードを入力]
 ---
 layout: cover
 transition: fade
+background: /bg_blue.png
 ---
 
 # ビルドを待っている間に...
@@ -188,7 +195,7 @@ layout: two-cols
 transition: fade
 ---
 
-## What is version?
+# <span style="color: #ffffff">What is version?</span>
 
 | Version   | Release    | PHP      | 
 | :-------: | :--------: | :------: | 
@@ -302,9 +309,10 @@ transition: fade
 ---
 transition: fade
 layout: cover
+background: /bg_blue.png
 ---
 
-## ところで、そろそろビルド終わった？
+## そろそろビルド終わった？
 
 終わらない人用コマンド  
 `example-app` ディレクトリを削除して再実行
@@ -348,7 +356,7 @@ transition: fade
 
 ## 動作確認
 
-<a href="http://localhost">http://localhost</a>
+http://localhost
 
 ---
 layout: two-cols
@@ -450,6 +458,7 @@ example-app-selenium-1       selenium/standalone-chromium   "/opt/bin/entry_poin
 ---
 layout: cover
 transition: fade
+background: /bg_blue.png
 ---
 
 # ここで宣伝‼️
@@ -457,20 +466,35 @@ transition: fade
 ---
 layout: cover
 transition: fade
+background: /bg_blue.png
 ---
 
 ## YouTubeのチャンネル登録&高評価をよろしくお願いします！！
 
-<a href="https://www.youtube.com/@miraito/streams">https://www.youtube.com/@miraito/streams</a>
+<p>YouTubeは<a href="https://www.youtube.com/@miraito/streams" target="_blank">こちら</a>から</p>
+<p>https://www.youtube.com/@miraito/streams</p>
 
 ---
 layout: cover
 transition: fade
+background: /bg_blue.png
 ---
 
 ## アンケートもやってます！！
 
-<a href="https://www.noway-form.com/ja/f/afaf2623-3b77-4d73-9293-79ca14938511">https://www.noway-form.com/ja/f/afaf2623-3b77-4d73-9293-79ca14938511</a>
+<p>アンケートは<a href="https://www.noway-form.com/ja/f/afaf2623-3b77-4d73-9293-79ca14938511" target="_blank">こちら</a>から</p>
+<p>https://www.noway-form.com/ja/f/afaf2623-3b77-4d73-9293-79ca14938511</p>
+
+---
+layout: cover
+transition: fade
+background: /bg_blue.png
+---
+
+## ペチオブDiscordコミュニティ活動再開します！！
+
+<p>Discordコミュニティは<a href="https://discord.gg/bTqahFWwz2" target="_blank">こちら</a>から</p>
+<p>https://discord.gg/bTqahFWwz2</p>
 
 ---
 transition: fade
@@ -489,14 +513,14 @@ transition: fade
 
 ## シェルエイリアスの設定
 
-```
+```bash
 $ echo $SHELL
 /bin/zsh # または /bin/bash
 ```
 
 `~/.zshrc` または `~/.bash_profile` に以下のエイリアス設定を追記する
 
-```
+```bash
 alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'
 ```
 
@@ -742,6 +766,10 @@ $ sail pint --test
 $ sail pint
 ```
 
+- Pint(ピント): PHP-CS-Fixerのラッパーライブラリ
+  - Laravelに標準インストール
+  - 未設定でもLaravelのルールが適用されてすぐ使えるメリット
+
 ---
 transition: fade
 ---
@@ -762,9 +790,6 @@ $ sail test
 ```
 
 - PHPUnit: PHP用の単体テストを行うテストフレームワーク
-- [Pest](https://pestphp.com)
-  - 新しいテストフレームワーク
-  - 
 
 ---
 transition: fade
@@ -786,6 +811,7 @@ rootユーザーで入ることはほぼない(一時的にライブラリをイ
 ---
 layout: cover
 transition: fade
+background: /bg_blue.png
 ---
 
 ## 質問＆相談＆感想のコーナー
@@ -802,6 +828,15 @@ transition: fade
 ---
 layout: cover
 transition: fade
+background: /next-event.png
+---
+
+## <a href="https://phper-oop.connpass.com/event/335304/" target="_blank">12/5 次回イベント</a>
+
+---
+layout: cover
+transition: fade
+background: /bg_blue.png
 ---
 
 ## おしまい
@@ -811,11 +846,11 @@ transition: fade
 ---
 layout: cover
 transition: fade
+background: /bg_blue.png
 ---
 
-## アンケートとチャンネル登録忘れずに！！
+## アンケートとチャンネル登録、コミュニティ参加を忘れずに！！
 
-<ul>
-  <li><a href="https://www.youtube.com/@miraito/streams">https://www.youtube.com/@miraito/streams</a></li>
-  <li><a href="https://www.noway-form.com/ja/f/afaf2623-3b77-4d73-9293-79ca14938511">https://www.noway-form.com/ja/f/afaf2623-3b77-4d73-9293-79ca14938511</a></li>
-</ul>
+<p><a href="https://www.youtube.com/@miraito/streams">https://www.youtube.com/@miraito/streams</a></p>
+<p><a href="https://www.noway-form.com/ja/f/afaf2623-3b77-4d73-9293-79ca14938511">https://www.noway-form.com/ja/f/afaf2623-3b77-4d73-9293-79ca14938511</a></p>
+<p><a href="https://discord.gg/bTqahFWwz2">https://discord.gg/bTqahFWwz2</a></p>
