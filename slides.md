@@ -195,7 +195,7 @@ layout: two-cols
 transition: fade
 ---
 
-# <span style="color: #ffffff">Laravelのバージョンについて</span>
+# <span style="color: #ffffff">Laravelのバージョン</span>
 
 | Version   | Release    | PHP      | 
 | :-------: | :--------: | :------: | 
@@ -733,6 +733,8 @@ transition: fade
 ---
 
 ## tinker - 対話シェル
+
+- Laravelのコードを対話的に実行して簡易的な動作確認が行える
 
 ```bash
 $ sail tinker
