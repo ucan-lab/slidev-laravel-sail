@@ -176,7 +176,7 @@ background: /bg_blue.png
 transition: fade
 ---
 
-## What is Laravel?
+## Laravelとは
 
 - PHP用のオープンソースWebアプリケーションフレームワーク
 - 認証システム、ルーティング、キャッシュ、セッション管理などが標準搭載
@@ -186,7 +186,7 @@ transition: fade
 transition: fade
 ---
 
-## Laravel is trend?
+## Laravelのトレンド調査
 
 <p><a href="https://trends.google.co.jp/trends/explore?date=all&geo=JP&q=Laravel,Symfony,CakePHP,Rails,Django#TIMESERIES" target="_blank"><img src="/trend.png" class="h-100"></a></p>
 
@@ -195,7 +195,7 @@ layout: two-cols
 transition: fade
 ---
 
-# <span style="color: #ffffff">What is version?</span>
+# <span style="color: #ffffff">Laravelのバージョンについて</span>
 
 | Version   | Release    | PHP      | 
 | :-------: | :--------: | :------: | 
@@ -268,7 +268,7 @@ transition: fade
 transition: fade
 ---
 
-## Laravel Release Cycle
+## Laravelのリリースサイクル
 
 - メジャーリリース
   - 年1リリース(2〜3月が多い)
@@ -284,20 +284,20 @@ transition: fade
 transition: fade
 ---
 
-## Laravel is history
+## Laravelの歴史
 
 - 2011年: Taylor Otwellがシンプルで使いやすいPHPフレームワークとして開発開始。Laravel1.0は簡素な作り
 - 2012年-2013年: MVCアーキテクチャ、Composerサポート、Artisan CLI、データベース移行が追加され注目
 - 2014年-2015年: Laravel 5.0でディレクトリ構造の刷新、HTTPミドルウェア、タスクスケジューリング等が導入
 - 2016年-2019年: Laravel Scout、Passport、Horizonなどのエコシステムが拡大し、コミュニティが急成長
 - 2020年以降: Jetstream、Sanctum、Livewire、Laravel 8.0以降のモダンな機能が追加。Vaporでサーバーレスデプロイも実現
-現在: 世界中で人気を集め、初心者からプロまで利用されるPHPフレームワークのトップに。
+- 現在: 世界中で人気を集め、初心者からプロまで利用されるPHPフレームワークのトップに。
 
 ---
 transition: fade
 ---
 
-## What is Laravel Sail?
+## Laravel Sailとは
 
 <p><img src="/logo.svg" class="h-30"></p>
 
